@@ -28,6 +28,7 @@ img
     padding: 90px 0
     &-title
         font-size: 24px
+        text-align: center
         +bold
     &-subtitle
         display: block
@@ -36,3 +37,20 @@ img
     padding: 20px 26px
     font-size: 15px
     border-radius: 10px
+.scroll-up
+    position: fixed
+    bottom: 10px
+    right: 20px
+    width: 40px
+    height: 40px
+    border: 2px solid $main-color
+    background-color: #ffffff
+    border-radius: 50%
+    &:focus
+        outline: none
+    &:hover
+        cursor: pointer
+.arrows
+    &__left, &__right
+        &:hover
+            cursor: pointer

@@ -1,15 +1,6 @@
-var button = document.querySelector('#button');
-var modal = document.querySelector('#modal');
-var close = document.querySelector('#close');
+ var scroll = $('#scroll');
 
-button.addEventListener('click', function() {
-   modal.classList.add('modal_active');
+ $(scroll).click( function(event) {
+        $('html, body').animate({scrollTop:0});
+        event.preventDefault();
 });
-
-close.addEventListener('click', function() {
-    modal.classList.remove('modal_active');
-});
-
-setInterval( function() {
-    modal.classList.remove('modal_active');
-}, 5000);
