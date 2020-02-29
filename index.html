@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/slick.css">
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/style.css">
+  <!-- Yandex.Metrika counter --> <script type="text/javascript" > (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym"); ym(58390585, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true }); </script> <noscript><div><img src="https://mc.yandex.ru/watch/58390585" style="position:absolute; left:-9999px;" alt="" /></div></noscript> <!-- /Yandex.Metrika counter -->
 </head>
 <body>
   <nav class="navbar">
@@ -89,8 +90,8 @@
           </span>
           <!-- /.section-subtitle -->
           <form action="#" class="form offer__form">
-            <input type="name" class="input offer__input" placeholder="Ваше имя">
-            <input type="tel" class="input offer__input" placeholder="Ваш телефон">
+            <input type="name" name="username" required class="input offer__input" autocomplete="off" placeholder="Ваше имя">
+            <input type="tel" name="phone" class="input offer__input phone" required placeholder="Ваш телефон">
             <button class="button offer__button">
               Получить бесплатный дизайн-проект
             </button> <!-- /.button offer_button -->
@@ -255,11 +256,13 @@
         <div class="form brif__form">
           <h3 class="form__title">Оставьте заявку на бесплатный расчет ремонта по телефону</h3>
           <span class="form__subtitle">Для этого заполните форму ниже</span>
-          <form action="#">
-            <input type="text" name="username" class="input brif__input" placeholder="Ваше имя">
-            <input type="tel" name="phone" class="input brif__input" placeholder="Ваш телефон">
-            <button class="button brif__button">Узнать стоимость</button>
-            <span class="form__description">Мы перезвоним Вам в течение 60 секунд</span>
+          <form action="#" id="brif__form">
+            <div class="brif__wrap">
+              <input type="text" name="username" class="input brif__input" placeholder="Ваше имя" autocomplete="off">
+              <input type="tel" name="phone" class="input brif__input phone" placeholder="Ваш телефон">
+              <button class="button brif__button">Узнать стоимость</button>
+              <span class="form__description">Мы перезвоним Вам в течение 60 секунд</span>
+            </div>
           </form>
         </div>
         <!-- /.form brif_form -->
@@ -272,6 +275,45 @@
 
 
   </main>
+
+  <footer class="footer">
+    <div class="map" id="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2253.9547615663564!2d37.16772931618717!3d55.60280098051353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b557034a991647%3A0x690e3031ec97672!2z0YPQuy4g0JvQtdC90LjQvdCwLCA4LCDQmtC-0LrQvtGI0LrQuNC90L4sINCc0L7RgdC60L7QstGB0LrQsNGPINC-0LHQuy4sIDE0MzM5MA!5e0!3m2!1sru!2sru!4v1582961933314!5m2!1sru!2sru" width="951.4" height="650" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+    <div class="container">
+      <div class="contacts-block">
+        <div class="contacts">
+          <h3 class="contacts__title">Приезжайте к нам в гости! Проконсультируем Вас по всем вопросам ремонта</h3>
+          <ul class="contacts-list">
+            <li class="contacts-list__item">
+              <span class="contacts-list__icon">
+                <img src="img/footer/clock-with-white-face.png" alt="">
+              </span> <!-- /.cotacts-list__icon -->
+              <span class="contacts-list__text">г. Москва <br> ул. Ленина, д.8, корпус 2, оф. 308</span> <!-- /.contacts-list__text -->
+            </li>
+            <!-- /.contacts-list__item -->
+            <li class="contacts-list__item">
+              <span class="contacts-list__icon">
+                <img src="img/footer/map-placeholder.png" alt="">
+              </span> <!-- /.cotacts-list__icon -->
+              <span class="contacts-list__text">Режим работы: <br> с 9:00 до 18:00</span> <!-- /.contacts-list__text -->
+            </li>
+            <!-- /.contacts-list__item -->
+            <li class="contacts-list__item">
+              <span class="contacts-list__icon">
+                <img src="img/footer/phone-call-button.png" alt="">
+              </span> <!-- /.cotacts-list__icon -->
+              <span class="contacts-list__text">Телефон:<a href="tel:+7(495)42-251-31" class="contacts-list__phone"> <br> + 7 (495) 42-251-31</a></span> <!-- /.contacts-list__text -->
+            </li>
+            <!-- /.contacts-list__item -->
+          </ul>
+          <!-- /.contacts__list -->
+        </div>
+        <!-- /.contacts -->
+      </div>
+      <!-- /.contacts-block -->
+    </div>
+  </footer>
 
 
   <div class="modal" id="modal">
@@ -291,37 +333,63 @@
 <script src="js/slick.min.js"></script>
 <script>
   $(document).ready(function(){
-  $('.slider').slick({
-    infinity: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    prevArrow: $('.arrows__left'),
-    nextArrow: $('.arrows__right'),
-    responsive: [
-    {
-      breakpoint: 1200,
-      settings: {
-        slidesToShow: 2,
+    /*brif__form*/
+    $('#brif__form').validate({
+      errorClass: "invalid",
+      errorElement: "div",
+      rules: {
+        phone: {
+          required: true,
+        },
+        username: {
+          required: true,
+          minlength: 2,
+        },
+      },
+      messages: {
+        username: {
+          required: 'Укажите имя',
+          minlength: jQuery.validator.format("Осталось символов: {0}")
+        },
+        phone: 'Укажите телефон',
+      },
+    });
+    /*Mask for phone*/
+    $('.phone').mask('+7 (999) 999 99 99');
+    /*Slider*/
+    $('.slider').slick({
+        infinity: true,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        infinite: true
-      }
-    }, 
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        infinite: true
-      }
-    }, 
-    ]
-  });
-});
+        prevArrow: $('.arrows__left'),
+        nextArrow: $('.arrows__right'),
+        responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true
+          }
+        }, 
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true
+          }
+        }, 
+        ]
+      });
+    });
 </script>
 <script src="js/wow.min.js"></script>
 <script>
   new WOW().init()
 </script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
 
 </body>
 </html>

@@ -15,7 +15,8 @@
         width: 100%
         height: 70px
         max-width: 370px
-        margin-bottom: 15px
+        margin-bottom: 7.5px
+        margin-top: 7.5px
     &__button
         height: 70px
         width: 100%
@@ -86,7 +87,7 @@
             margin-bottom: 15px
         &__subtitle
             margin-bottom: 30px
-@media ( max-width: 768px )
+@media ( max-width: 1000px )
     .brif
         background-image: url(../img/brif/brif-color-bg.jpg), url(../img/brif/brif-bg.jpg)
         background-position: top center, center bottom
@@ -97,3 +98,13 @@
         &__form
             margin-top: 80px
             padding-left: 0
+        &__wrap
+            display: flex
+            flex-direction: column
+            align-items: center
+.invalid
+    border: 1px solid red
+#username-error
+    border: none
+#phone-error
+    border: none
